@@ -70,7 +70,7 @@ jobs:
         uses: docker/login-action@f75d088332b07a08afadf6ac53c74509b9453f12
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
+          username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # Extract metadata (tags, labels) for Docker
@@ -79,7 +79,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@314ddf6d4a82333bf1bc7630399df41bf68eba09
         with:
-          images: ${{ env.REGISTRY }}/${{ github.actor }}/${{ matrix.image }}
+          images: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
